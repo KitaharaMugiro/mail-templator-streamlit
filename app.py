@@ -36,8 +36,8 @@ def create_mail(url, mail_template):
 
     # テキストが長すぎる場合は、一部を削除します。
     content = result
-    if len(content) > 2500: 
-        content = result[:2500]
+    if len(content) > 1500: 
+        content = result[:1500]
     
     prompt = f"""
     企業情報:
@@ -47,7 +47,7 @@ def create_mail(url, mail_template):
     {mail_template}
 
     制約条件
-    - MAIL_TEMPLATEにある[]を全て埋めてください
+    - 企業情報を見て、MAIL_TEMPLATEにある[]を全て埋めてください
     - MAIL_TEMPLATE:の文章をそのまま使ってください
     - []は削除してください (例: [企業名] -> TOYOTA)
     - []を埋められない場合は削除してください (例: [企業の困っていること] -> )
@@ -86,9 +86,9 @@ def get_mail_template():
 
 ご多用かと存じますが、下記の中から30分、面接のお時間を頂戴できますと幸いです。
 
-- {day1}({day1_youbi}) 11:00 ~ 18:00
-- {day2}({day2_youbi}) 11:00 ~ 18:00
-- {day3}({day3_youbi}) 11:00 ~ 18:00
+- {day1} 11:00 ~ 18:00
+- {day2} 11:00 ~ 18:00
+- {day3} 11:00 ~ 18:00
 
 ご連絡を心よりお待ち申し上げております。
     """
