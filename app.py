@@ -71,8 +71,6 @@ def create_mail(url, mail_template):
 
     
 def get_mail_template():
-    day1, day2, day3, day1_youbi, day2_youbi, day3_youbi = get_jikoku()
-
     MAIL_TEMPLATE = f"""
 [企業名]様
 
@@ -83,32 +81,10 @@ def get_mail_template():
 私は[企業の困っている領域]での経験があります。
 [企業に刺さりそうな謳い文句]
 
-ご多用かと存じますが、下記の中から30分、面接のお時間を頂戴できますと幸いです。
-
-- {day1}({day1_youbi}) 11:00 ~ 18:00
-- {day2}({day2_youbi}) 11:00 ~ 18:00
-- {day3}({day3_youbi}) 11:00 ~ 18:00
-
+ご多用かと存じますが、面接のお時間を頂戴できますと幸いです。
 ご連絡を心よりお待ち申し上げております。
     """
     return MAIL_TEMPLATE
-
-def get_jikoku():
-    import datetime
-    import workdays
-    import locale
-    locale.setlocale(locale.LC_TIME, 'ja_JP.UTF-8')
-    today = datetime.date.today()
-    day1 = workdays.workday(today, days=2)
-    day2 = workdays.workday(today, days=3)
-    day3 = workdays.workday(today, days=4)
-    day1_youbi = day1.strftime('%a')
-    day2_youbi = day2.strftime('%a')
-    day3_youbi = day3.strftime('%a')
-    day1 = day1.strftime('%-m/%-d')
-    day2 = day2.strftime('%-m/%-d')
-    day3 = day3.strftime('%-m/%-d')
-    return day1, day2, day3, day1_youbi, day2_youbi, day3_youbi
 
 
 
