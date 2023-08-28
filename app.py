@@ -47,9 +47,10 @@ def create_mail(url, mail_template):
     {mail_template}
 
     制約条件
-    - MAIL_TEMPLATEにある[]を全て埋めていること
-    - MAIL_TEMPLATE:の文章をそのまま使うこと
-    - []は削除してください
+    - MAIL_TEMPLATEにある[]を全て埋めてください
+    - MAIL_TEMPLATE:の文章をそのまま使ってください
+    - []は削除してください (例: [企業名] -> TOYOTA)
+    - []を埋められない場合は削除してください (例: [企業の困っていること] -> )
 
     補完したMAIL_TEMPLATE:
     """
