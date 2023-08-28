@@ -7,7 +7,7 @@ def main():
     st.title('メール自動作成ツール')
     st.write('URLを入力すると、その内容を元にChatGPTを使ってメールを自動作成するツールです。')
 
-    url = st.text_input('URL', "https://about.yahoo.co.jp/hr/job-info/role/1601/")
+    url = st.text_input('URL', "https://career.levtech.jp/engineer/offer/detail/25100/")
     mail_template = st.text_area('メールのテンプレート', get_mail_template(), height=500)
 
     if st.button('メールを作成する'):
@@ -36,21 +36,23 @@ def create_mail(url, mail_template):
 
     # テキストが長すぎる場合は、一部を削除します。
     content = result
-    if len(content) > 1500: 
-        content = result[:1500]
+    if len(content) > 1000: 
+        content = result[:1000]
     
     prompt = f"""
-    企業情報:
+    企業情報 {{
     {content}
+    }}
 
-    MAIL_TEMPLATE:
+    MAIL_TEMPLATE{{
     {mail_template}
+    }}
 
     制約条件
     - 企業情報を見て、MAIL_TEMPLATEにある[]を全て埋めてください
     - MAIL_TEMPLATE:の文章をそのまま使ってください
-    - []は削除してください (例: [企業名] -> TOYOTA)
-    - []を埋められない場合は削除してください (例: [企業の困っていること] -> )
+    - []は削除してください
+    - []を埋められない場合は削除してください
 
     補完したMAIL_TEMPLATE:
     """
